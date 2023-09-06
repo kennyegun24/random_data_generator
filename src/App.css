@@ -1,38 +1,81 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  background-color: #303030;
+  /* min-height: 100vh; */
+  height: 100%;
+  font-family: sans-serif;
+  color: #828080;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input {
+  background-color: #303030;
+  border-color: #cac8c8;
+  outline: #cac8c8;
+  color: #fff;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.flex {
   display: flex;
-  flex-direction: column;
+}
+
+.align_center {
   align-items: center;
+}
+
+.justify_Center {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.justify_between {
+  justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.column {
+  flex-direction: column;
+}
+
+.gap1rem {
+  gap: 1rem;
+}
+
+.gap05rem {
+  gap: 0.5rem;
+}
+
+.gap2rem {
+  gap: 2rem;
+}
+
+.padding05rem {
+  padding: 0.5rem;
+}
+
+.padding1rem {
+  padding: 1rem;
+}
+
+.width50 {
+  width: 50%;
+}
+
+pre {
+  color: #fff;
+  min-height: 86vh;
+  max-height: 86vh;
+  overflow-y: auto;
+}
+
+.profilePostsButton {
+  background: #151a23;
+  color: #fff;
+  padding: 0.5rem;
+  width: 100px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
 }
