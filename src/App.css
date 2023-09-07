@@ -51,6 +51,10 @@ input {
   gap: 2rem;
 }
 
+.font10px {
+  font-size: 10px;
+}
+
 .padding05rem {
   padding: 0.5rem;
 }
@@ -63,10 +67,16 @@ input {
   width: 50%;
 }
 
+.height100vh {
+  min-height: 89vh;
+  max-height: 89vh;
+  overflow-y: auto;
+}
+
 pre {
   color: #fff;
-  min-height: 86vh;
-  max-height: 86vh;
+  min-height: 85vh;
+  max-height: 85vh;
   overflow-y: auto;
 }
 

@@ -1,4 +1,4 @@
-export const names = [
+export const first_names = [
   { word: "Kenny" },
   { word: "Corney" },
   { word: "Kelly" },
