@@ -230,7 +230,50 @@ export const generateRandomDob = (nul, null_percent) => {
   }
 };
 
-console.log(generateRandomDob());
+export const generateUrls = (nul, null_percent) => {
+  if (nul && Math.random() < null_percent / 100) {
+    return null;
+  } else {
+    const letters = "abcdefghijklmnopqrstuvwxy";
+
+    let minNumberOfCharacters = 4;
+    let maxNumberOfCharacters = 7;
+    let word = "";
+    let domain = ["com", "net", "za", "ng", "uk", "ok", "io", "max"];
+    let endPoint = [
+      "profile",
+      "rand",
+      "favorites",
+      "users",
+      "user/messages",
+      "profile/21",
+      "check/confirm",
+      "profile/all_comments",
+    ];
+
+    for (
+      let i = 0;
+      i <=
+      Math.floor(
+        Math.random() * (maxNumberOfCharacters - minNumberOfCharacters) +
+          minNumberOfCharacters
+      );
+      i++
+    ) {
+      let index = Math.floor(Math.random() * letters.length);
+      word += letters.charAt(index);
+    }
+    return (
+      word +
+      "." +
+      domain[Math.floor(Math.random() * domain.length)] +
+      "/" +
+      endPoint[Math.floor(Math.random() * endPoint.length)]
+    );
+  }
+};
+
+console.log(generateUrls());
 
 export const downloadJson = (arr) => {
   const json = JSON.stringify(arr, null, 2).replace(/"([^"]+)":/g, "$1:");

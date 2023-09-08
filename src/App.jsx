@@ -21,6 +21,7 @@ import {
   generatePassword,
   generateRandomDob,
   generateRandomSentencesArray,
+  generateUrls,
   generateUserName,
 } from "./helpers/functionalities";
 // import { user_names } from "./data/user_names";
@@ -52,6 +53,8 @@ function App() {
             ? generateIpAddress(each.null, each.null_percent)
             : each.option === "age"
             ? formAge(each.null, each.null_percent)
+            : each.option === "url"
+            ? generateUrls(each.null, each.null_percent)
             : each.option === "dob"
             ? generateRandomDob(each.null, each.null_percent)
             : each.option === "id"
@@ -164,6 +167,7 @@ function App() {
               <option value="bool">bool</option>
               <option value="ip">IP address</option>
               <option value="dob">Date of birth</option>
+              <option value="rul">Links</option>
             </select>
             <div className="flex align_center gap05rem">
               <input
@@ -241,6 +245,7 @@ function App() {
                 <option value="bool">bool</option>
                 <option value="ip">IP address</option>
                 <option value="dob">Date of birth</option>
+                <option value="rul">Links</option>
               </select>
               <div className="flex align_center gap05rem">
                 <input
