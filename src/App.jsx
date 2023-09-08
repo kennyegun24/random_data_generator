@@ -167,7 +167,7 @@ function App() {
               <option value="bool">bool</option>
               <option value="ip">IP address</option>
               <option value="dob">Date of birth</option>
-              <option value="rul">Links</option>
+              <option value="url">Links</option>
             </select>
             <div className="flex align_center gap05rem">
               <input
@@ -245,7 +245,7 @@ function App() {
                 <option value="bool">bool</option>
                 <option value="ip">IP address</option>
                 <option value="dob">Date of birth</option>
-                <option value="rul">Links</option>
+                <option value="url">Links</option>
               </select>
               <div className="flex align_center gap05rem">
                 <input
