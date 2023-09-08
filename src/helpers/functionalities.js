@@ -196,3 +196,41 @@ export const generateUserName = (nul, null_percent) => {
     return userName;
   }
 };
+
+export const generateIpAddress = (nul, null_percent) => {
+  if (nul && Math.random() < null_percent / 100) {
+    return null;
+  } else {
+    const ipAddresses =
+      Math.floor(Math.random() * 255) +
+      1 +
+      "." +
+      Math.floor(Math.random() * 255) +
+      "." +
+      Math.floor(Math.random() * 255) +
+      "." +
+      Math.floor(Math.random() * 255);
+    return ipAddresses;
+  }
+};
+
+export const downloadJson = (arr) => {
+  const json = JSON.stringify(arr, null, 2).replace(/"([^"]+)":/g, "$1:");
+  const blob = new Blob([json], { type: "application/ruby" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "data.rb";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+};
+
+export const copyFunction = () => {
+  const copyText = document.querySelector("code").textContent;
+  navigator.clipboard
+    .writeText(copyText)
+    .then(() => {})
+    .catch((error) => {});
+};

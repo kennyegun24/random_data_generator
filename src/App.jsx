@@ -2,6 +2,8 @@ import "./App.css";
 
 import { useState } from "react";
 import {
+  copyFunction,
+  downloadJson,
   formAge,
   formBool,
   formCarCompany,
@@ -15,11 +17,12 @@ import {
   formRandomPhone,
   formStates,
   formYesNo,
+  generateIpAddress,
   generatePassword,
   generateRandomSentencesArray,
   generateUserName,
 } from "./helpers/functionalities";
-import { user_names } from "./data/user_names";
+// import { user_names } from "./data/user_names";
 // import { usernames } from "./data/user_names";
 
 function App() {
@@ -43,9 +46,11 @@ function App() {
       const fieldObjects = joined.map((each) => ({
         [each.name]:
           each.option === "user_name"
-            ? generateUserName()
+            ? generateUserName(each.null, each.null_percent)
+            : each.option === "ip"
+            ? generateIpAddress(each.null, each.null_percent)
             : each.option === "age"
-            ? formAge()
+            ? formAge(each.null, each.null_percent)
             : each.option === "id"
             ? index + 1
             : each.option === "sentence"
@@ -91,27 +96,6 @@ function App() {
   const json = () => {
     setArr(generateJson);
   };
-
-  function downloadJson() {
-    const json = JSON.stringify(arr, null, 2).replace(/"([^"]+)":/g, "$1:");
-    const blob = new Blob([json], { type: "application/ruby" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "data.rb";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
-
-  function copyFunction() {
-    const copyText = document.querySelector("code").textContent;
-    navigator.clipboard
-      .writeText(copyText)
-      .then(() => {})
-      .catch((error) => {});
-  }
 
   const addField = () => {
     setFields([...fields, { name: fields.name, option: "" }]);
@@ -175,6 +159,7 @@ function App() {
               <option value="sex">sex</option>
               <option value="yes-no">yes/no</option>
               <option value="bool">bool</option>
+              <option value="ip">IP address</option>
             </select>
             <div className="flex align_center gap05rem">
               <input
@@ -250,6 +235,7 @@ function App() {
                 <option value="sex">sex</option>
                 <option value="yes-no">yes/no</option>
                 <option value="bool">bool</option>
+                <option value="ip">IP address</option>
               </select>
               <div className="flex align_center gap05rem">
                 <input
@@ -317,7 +303,7 @@ function App() {
         </div>
         <div className="width50">
           <div className="flex gap05rem">
-            <button onClick={downloadJson}>Download JSON</button>
+            <button onClick={() => downloadJson(arr)}>Download JSON</button>
             <button onClick={copyFunction}>Copy</button>
           </div>
           <pre>
