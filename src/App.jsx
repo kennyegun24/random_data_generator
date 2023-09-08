@@ -223,6 +223,12 @@ function App() {
                     </div>
                   )}
                 </div>
+                <button
+                  onClick={() => removeField(index)}
+                  class="pointer cancelIcon"
+                >
+                  &#10006;
+                </button>
               </div>
             ))}
           </div>

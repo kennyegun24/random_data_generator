@@ -215,3 +215,16 @@ pre {
   max-height: 85vh;
   overflow-y: auto;
 }
+
+.cancelIcon {
+  font-size: 18px;
+  background-color: #04d7cd;
+  padding: 0 0.2rem;
+  align-self: center;
+  color: #fff;
+  border: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
