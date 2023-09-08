@@ -273,8 +273,6 @@ export const generateUrls = (nul, null_percent) => {
   }
 };
 
-console.log(generateUrls());
-
 export const downloadJson = (arr) => {
   const json = JSON.stringify(arr, null, 2).replace(/"([^"]+)":/g, "$1:");
   const blob = new Blob([json], { type: "application/ruby" });
