@@ -240,6 +240,7 @@ function App() {
                 <option value="yes-no">yes/no</option>
                 <option value="bool">bool</option>
                 <option value="ip">IP address</option>
+                <option value="dob">Date of birth</option>
               </select>
               <div className="flex align_center gap05rem">
                 <input

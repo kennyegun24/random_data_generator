@@ -214,16 +214,20 @@ export const generateIpAddress = (nul, null_percent) => {
   }
 };
 
-export const generateRandomDob = () => {
-  const dob =
-    Math.floor(Math.random() * 31) +
-    1 +
-    "/" +
-    (Math.floor(Math.random() * 12) + 1) +
-    "/" +
-    Math.floor(Math.random() * (2020 - 1950) + 1950);
+export const generateRandomDob = (nul, null_percent) => {
+  if (nul && Math.random() < null_percent / 100) {
+    return null;
+  } else {
+    const dob =
+      Math.floor(Math.random() * 31) +
+      1 +
+      "/" +
+      (Math.floor(Math.random() * 12) + 1) +
+      "/" +
+      Math.floor(Math.random() * (2020 - 1950) + 1950);
 
-  return dob;
+    return dob;
+  }
 };
 
 console.log(generateRandomDob());
