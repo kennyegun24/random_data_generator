@@ -275,8 +275,29 @@ export const generateUrls = (nul, null_percent) => {
 
 export const downloadJson = (arr) => {
   const json = JSON.stringify(arr, null, 2).replace(/"([^"]+)":/g, "$1:");
-  const blob = new Blob([json], { type: "application/ruby" });
+  const blob = new Blob([json], { type: "application/json" });
   const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "data.json";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+};
+
+export const copyFunction = (param) => {
+  const copyText = param.textContent;
+  navigator.clipboard
+    .writeText(copyText)
+    .then(() => {})
+    .catch((error) => {});
+};
+
+export const downloadRuby = (rubyData) => {
+  const rubyContent = rubyData.textContent;
+  const ruby = new Blob([rubyContent], { type: "application/ruby" });
+  const url = URL.createObjectURL(ruby);
   const a = document.createElement("a");
   a.href = url;
   a.download = "data.rb";
@@ -284,12 +305,4 @@ export const downloadJson = (arr) => {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-};
-
-export const copyFunction = () => {
-  const copyText = document.querySelector("code").textContent;
-  navigator.clipboard
-    .writeText(copyText)
-    .then(() => {})
-    .catch((error) => {});
 };
