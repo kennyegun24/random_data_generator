@@ -1,194 +1,85 @@
 import "./App.css";
-import {
-  nouns,
-  pronouns,
-  verbs,
-  articles,
-  conjunctions,
-  adjectives,
-  prepositions,
-} from "./data/speech";
-import { mobile_nums } from "./data/numbers";
-import { first_names } from "./data/names";
+
 import { useState } from "react";
-import { countries } from "./data/countries";
-import { states } from "./data/states";
-import { last_names } from "./data/last_names";
-import { bool, sex, yes_no } from "./data/arrays";
-import { car_model } from "./data/car_model";
-import { car_company } from "./data/car_company";
-import { colors } from "./data/colors";
+import {
+  formAge,
+  formBool,
+  formCarCompany,
+  formCarModel,
+  formColors,
+  formCountry,
+  formGender,
+  formLastName,
+  formNames,
+  formRandomNumbers,
+  formRandomPhone,
+  formStates,
+  formYesNo,
+  generatePassword,
+  generateRandomSentencesArray,
+  generateUserName,
+} from "./helpers/functionalities";
+import { user_names } from "./data/user_names";
+// import { usernames } from "./data/user_names";
 
 function App() {
   const numberOfTimesOfArrays = 1000;
   const [defaultValues, setDefaultValues] = useState({
-    name: "",
+    name: null,
     option: "",
     no: 1,
+    null: false,
+    null_percent: null,
   });
-  const [fields, setFields] = useState([{ name: "", option: "", no: 1 }]);
-  // const [no_of_sentence, set_No_Of_Sentences] = useState({
-  //   num: 0,
-  // });
+  const [fields, setFields] = useState([
+    { name: null, option: "", no: 1, null: false, null_percent: null },
+  ]);
 
   const [arr, setArr] = useState();
-
-  function formRandomSentence() {
-    // const randomName =
-    //   first_names[Math.floor(Math.random() * first_names.length)];
-    const randomPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
-    const randomVerb = verbs[Math.floor(Math.random() * verbs.length)];
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    const randomArticle = articles[Math.floor(Math.random() * articles.length)];
-    const randomConjuction =
-      conjunctions[Math.floor(Math.random() * conjunctions.length)];
-    const randomPreposition =
-      prepositions[Math.floor(Math.random() * prepositions.length)];
-
-    return `${randomArticle} ${randomNoun} ${randomVerb} ${randomPreposition} ${randomVerb} ${randomPreposition} ${randomArticle} ${randomNoun} ${randomConjuction} ${randomPronoun} ${randomVerb} ${randomVerb}..`;
-  }
-
-  function generateRandomSentencesArray(num) {
-    const sentenceCount = Math.floor(Math.random() * (num - 1)) + 2;
-    const sentenceArray = new Array(sentenceCount)
-      .fill(0)
-      .map(() => formRandomSentence());
-
-    return sentenceArray.join(" ");
-  }
-
-  function formRandomNumbers() {
-    const randomNumbers = Math.floor(Math.random() * 99999999999);
-    // console.log(randomNumbers);
-    return randomNumbers;
-  }
-
-  function formRandomPhone() {
-    const randumMobileNums =
-      mobile_nums[Math.floor(Math.random() * mobile_nums.length)];
-
-    return `${randumMobileNums}`;
-  }
-
-  function formNames() {
-    const randomNames =
-      first_names[Math.floor(Math.random() * first_names.length)];
-
-    return `${randomNames.word}`;
-  }
-
-  function formLastName() {
-    const randomNames =
-      last_names[Math.floor(Math.random() * last_names.length)];
-
-    return `${randomNames.word}`;
-  }
-
-  const generatePassword = () => {
-    let length = 8,
-      charset =
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789?_-(}){[]/|=+",
-      retVal = "";
-    let n = charset.length;
-    for (let i = 0; i < length; ++i) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-    return retVal;
-  };
-
-  function formGender() {
-    const randomGender = sex[Math.floor(Math.random() * sex.length)];
-
-    return `${randomGender}`;
-  }
-
-  function formYesNo() {
-    const randomYesNo = yes_no[Math.floor(Math.random() * yes_no.length)];
-
-    return `${randomYesNo}`;
-  }
-
-  function formBool() {
-    const randomBool = bool[Math.floor(Math.random() * bool.length)];
-
-    return `${randomBool}`;
-  }
-
-  function formStates() {
-    const randomState = states[Math.floor(Math.random() * states.length)];
-
-    return `${randomState}`;
-  }
-
-  function formCountry() {
-    const randomCountry =
-      countries[Math.floor(Math.random() * countries.length)];
-
-    return `${randomCountry}`;
-  }
-
-  function formCarModel() {
-    const randomCarModel =
-      car_model[Math.floor(Math.random() * car_model.length)];
-
-    return `${randomCarModel.word}`;
-  }
-
-  function formCarCompany() {
-    const randomCarCompany =
-      car_company[Math.floor(Math.random() * car_company.length)];
-
-    return `${randomCarCompany.word}`;
-  }
-
-  function formColors() {
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-    return `${randomColor.word}`;
-  }
-
-  function formAge() {
-    const randomAges = Math.floor(Math.random() * 100);
-    return randomAges + "yrs";
-  }
 
   const generateJson = () => {
     return new Array(numberOfTimesOfArrays).fill(0).map((arr, index) => {
       const joined = [defaultValues, ...fields];
       const fieldObjects = joined.map((each) => ({
         [each.name]:
-          each.option === "age"
+          each.option === "user_name"
+            ? generateUserName()
+            : each.option === "age"
             ? formAge()
             : each.option === "id"
             ? index + 1
             : each.option === "sentence"
-            ? generateRandomSentencesArray(each.no)
+            ? generateRandomSentencesArray(
+                each.no,
+                each.null,
+                each.null_percent
+              )
             : each.option === "phone"
-            ? formRandomPhone()
+            ? formRandomPhone(each.null, each.null_percent)
             : each.option === "randDigits"
-            ? parseInt(formRandomNumbers())
+            ? parseInt(formRandomNumbers(each.null, each.null_percent))
             : each.option === "name"
-            ? formNames()
+            ? formNames(each.null, each.null_percent)
             : each.option === "password"
             ? generatePassword()
             : each.option === "last-name"
-            ? formLastName()
+            ? formLastName(each.null, each.null_percent)
             : each.option === "sex"
-            ? formGender()
+            ? formGender(each.null, each.null_percent)
             : each.option === "bool"
-            ? JSON.parse(formBool())
+            ? JSON.parse(formBool(each.null, each.null_percent))
             : each.option === "yes-no"
-            ? formYesNo()
+            ? formYesNo(each.null, each.null_percent)
             : each.option === "state"
-            ? formStates()
+            ? formStates(each.null, each.null_percent)
             : each.option === "country"
-            ? formCountry()
+            ? formCountry(each.null, each.null_percent)
             : each.option === "car-model"
-            ? formCarModel()
+            ? formCarModel(each.null, each.null_percent)
             : each.option === "car-company"
-            ? formCarCompany()
+            ? formCarCompany(each.null, each.null_percent)
             : each.option === "colors"
-            ? formColors()
+            ? formColors(each.null, each.null_percent)
             : null,
       }));
       // fieldObjects will produce multiple objects in an array, depending on how many objects are present in fields state.
@@ -285,6 +176,16 @@ function App() {
               <option value="yes-no">yes/no</option>
               <option value="bool">bool</option>
             </select>
+            <div className="flex align_center gap05rem">
+              <input
+                type="checkbox"
+                id=""
+                name="bool"
+                max={5}
+                onChange={(e) => updateSingleField(e.target.checked, "null")}
+              />
+              <span className="font10px">null?</span>
+            </div>
             {defaultValues.option === "sentence" && (
               <div className="flex align_center gap05rem">
                 <input
@@ -292,9 +193,22 @@ function App() {
                   id=""
                   style={{ width: "30px" }}
                   max={5}
-                  // onChange={(e) => set_No_Of_Sentences(e.target.value)}
                   onChange={(e) =>
                     updateSingleField(parseInt(e.target.value), "no")
+                  }
+                />
+                <span className="font10px">how many sentences</span>
+              </div>
+            )}
+            {defaultValues.null && (
+              <div className="flex align_center gap05rem">
+                <input
+                  type="number"
+                  id=""
+                  style={{ width: "30px" }}
+                  max={5}
+                  onChange={(e) =>
+                    updateSingleField(parseInt(e.target.value), "null_percent")
                   }
                 />
                 <span className="font10px">how many sentences</span>
@@ -337,6 +251,16 @@ function App() {
                 <option value="yes-no">yes/no</option>
                 <option value="bool">bool</option>
               </select>
+              <div className="flex align_center gap05rem">
+                <input
+                  type="checkbox"
+                  id=""
+                  name="bool"
+                  max={5}
+                  onChange={(e) => updateField(index, "null", e.target.checked)}
+                />
+                <span className="font10px">null?</span>
+              </div>
               {field.option === "sentence" && (
                 <div className="flex align_center gap05rem">
                   <input
@@ -346,6 +270,24 @@ function App() {
                     max={5}
                     onChange={(e) =>
                       updateField(index, "no", parseInt(e.target.value))
+                    }
+                  />
+                  <span className="font10px">how many sentences</span>
+                </div>
+              )}
+              {field.null && (
+                <div className="flex align_center gap05rem">
+                  <input
+                    type="number"
+                    id=""
+                    style={{ width: "30px" }}
+                    max={5}
+                    onChange={(e) =>
+                      updateField(
+                        index,
+                        "null_percent",
+                        parseInt(e.target.value)
+                      )
                     }
                   />
                   <span className="font10px">how many sentences</span>
