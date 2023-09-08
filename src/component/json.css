@@ -1,0 +1,48 @@
+.preview_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.json_container {
+  background-color: #424242;
+  margin: 5vh 5%;
+  height: 90vh;
+}
+
+pre {
+  color: #fff;
+  min-height: 83vh;
+  max-height: 83vh;
+  overflow-y: auto;
+  width: 49%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.closeBtn {
+  align-self: flex-start;
+  margin: auto 0 auto 0;
+  background: red;
+  transition: 0.4s ease-in-out;
+}
+
+.closeBtn:hover {
+  background: #424242;
+  transition: 0.4s ease-in-out;
+}
+
+.downloadCopyBtnDiv {
+  position: fixed;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.downloadBtn:hover {
+  background: #04d7cd;
+  transition: 0.4s ease-in-out;
+}
