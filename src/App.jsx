@@ -2,8 +2,6 @@ import "./App.css";
 
 import { useState } from "react";
 import {
-  copyFunction,
-  downloadJson,
   formAge,
   formBool,
   formCarCompany,
@@ -24,16 +22,16 @@ import {
   generateUrls,
   generateUserName,
 } from "./helpers/functionalities";
+import Preview from "./component/Preview";
 
 function App() {
-  // const numberOfTimesOfArrays = 5;
   const [fields, setFields] = useState([
     { name: null, option: "", no: 1, null: false, null_percent: null },
   ]);
   const [noOfRows, setnoOfRows] = useState(1);
-  console.log(noOfRows);
-
+  const [generatorType, setGeneratorType] = useState(null);
   const [arr, setArr] = useState();
+  const [show, setShow] = useState(false);
 
   const generateJson = () => {
     return new Array(noOfRows).fill(0).map((arr, index) => {
@@ -111,9 +109,10 @@ function App() {
     setFields(newField);
   };
 
-  const selectGenerator = (e) => {
-    if (e.target.value === "json") {
+  const preview = () => {
+    if (generatorType === "json") {
       json();
+      setShow(true);
     }
   };
 
@@ -130,7 +129,7 @@ function App() {
 
       <div>
         <div className="flex gap1rem column inputDiv">
-          <div className="flex justify_around">
+          <div className="flex gap2rem justify_around">
             <h5 className="inputLabel">Fields</h5>
             <h5 className="inputLabel">Options</h5>
             <h5 className="inputLabel">Type</h5>
@@ -253,31 +252,27 @@ function App() {
           </div>
         </div>
         <div class="flex gap1rem marginTop2rem">
-          <select onChange={selectGenerator} class="button">
+          <select
+            onChange={(e) => setGeneratorType(e.target.value)}
+            class="button"
+          >
             <option value="Generate" selected>
               Generate
             </option>
             <option value="json">JSON</option>
             <option value="ruby">Ruby</option>
           </select>
-          <button onClick={() => downloadJson(arr)} class="button">
-            Download JSON
-          </button>
-          <button class="button">Download Ruby</button>
-          <button onClick={copyFunction} class="button">
-            copy
+          <button onClick={preview} class="button">
+            Preview
           </button>
         </div>
-        <pre>
-          <code className="prettyprint">
-            {JSON.stringify(arr, null, 2)?.replace(/"([^"]+)":/g, "$1:")}
-          </code>
-        </pre>
       </div>
+      {show && (
+        <Preview arr={generatorType === "json" && arr} setShow={setShow} />
+      )}
     </div>
   );
 }
-
 export default App;
 
 // const removeDuplicateCountry = () => {
