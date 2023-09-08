@@ -29,7 +29,7 @@ function App() {
     { name: null, option: "", no: 1, null: false, null_percent: null },
   ]);
   const [noOfRows, setnoOfRows] = useState(1);
-  const [generatorType, setGeneratorType] = useState(null);
+  const [generate, setGenerate] = useState(false);
   const [arr, setArr] = useState();
   const [show, setShow] = useState(false);
 
@@ -110,7 +110,7 @@ function App() {
   };
 
   const preview = () => {
-    if (generatorType === "json") {
+    if (generate) {
       json();
       setShow(true);
     }
@@ -252,24 +252,15 @@ function App() {
           </div>
         </div>
         <div class="flex gap1rem marginTop2rem">
-          <select
-            onChange={(e) => setGeneratorType(e.target.value)}
-            class="button"
-          >
-            <option value="Generate" selected>
-              Generate
-            </option>
-            <option value="json">JSON</option>
-            <option value="ruby">Ruby</option>
-          </select>
+          <button onClick={() => setGenerate(true)} class="button">
+            Generate
+          </button>
           <button onClick={preview} class="button">
             Preview
           </button>
         </div>
       </div>
-      {show && (
-        <Preview arr={generatorType === "json" && arr} setShow={setShow} />
-      )}
+      {show && <Preview arr={arr} setShow={setShow} />}
     </div>
   );
 }
