@@ -19,6 +19,7 @@ import {
   formYesNo,
   generateIpAddress,
   generatePassword,
+  generateRandomDob,
   generateRandomSentencesArray,
   generateUserName,
 } from "./helpers/functionalities";
@@ -26,7 +27,7 @@ import {
 // import { usernames } from "./data/user_names";
 
 function App() {
-  const numberOfTimesOfArrays = 1000;
+  const numberOfTimesOfArrays = 5;
   const [defaultValues, setDefaultValues] = useState({
     name: null,
     option: "",
@@ -51,6 +52,8 @@ function App() {
             ? generateIpAddress(each.null, each.null_percent)
             : each.option === "age"
             ? formAge(each.null, each.null_percent)
+            : each.option === "dob"
+            ? generateRandomDob(each.null, each.null_percent)
             : each.option === "id"
             ? index + 1
             : each.option === "sentence"
@@ -160,6 +163,7 @@ function App() {
               <option value="yes-no">yes/no</option>
               <option value="bool">bool</option>
               <option value="ip">IP address</option>
+              <option value="dob">Date of birth</option>
             </select>
             <div className="flex align_center gap05rem">
               <input

@@ -214,6 +214,20 @@ export const generateIpAddress = (nul, null_percent) => {
   }
 };
 
+export const generateRandomDob = () => {
+  const dob =
+    Math.floor(Math.random() * 31) +
+    1 +
+    "/" +
+    (Math.floor(Math.random() * 12) + 1) +
+    "/" +
+    Math.floor(Math.random() * (2020 - 1950) + 1950);
+
+  return dob;
+};
+
+console.log(generateRandomDob());
+
 export const downloadJson = (arr) => {
   const json = JSON.stringify(arr, null, 2).replace(/"([^"]+)":/g, "$1:");
   const blob = new Blob([json], { type: "application/ruby" });
