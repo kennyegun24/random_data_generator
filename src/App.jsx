@@ -26,10 +26,16 @@ import Preview from "./component/Preview";
 
 function App() {
   const [fields, setFields] = useState([
-    { name: null, option: "", no: 1, null: false, null_percent: null },
+    {
+      name: null,
+      option: "",
+      no_of_sentences: 1,
+      null: false,
+      null_percent: null,
+      min_words: 500,
+    },
   ]);
   const [noOfRows, setnoOfRows] = useState(1);
-  const [generate, setGenerate] = useState(false);
   const [arr, setArr] = useState();
   const [show, setShow] = useState(false);
 
@@ -52,9 +58,10 @@ function App() {
             ? index + 1
             : each.option === "sentence"
             ? generateRandomSentencesArray(
-                each.no,
+                each.no_of_sentences,
                 each.null,
-                each.null_percent
+                each.null_percent,
+                each.max_words
               )
             : each.option === "phone"
             ? formRandomPhone(each.null, each.null_percent)
@@ -110,10 +117,8 @@ function App() {
   };
 
   const preview = () => {
-    if (generate) {
-      json();
-      setShow(true);
-    }
+    json();
+    setShow(true);
   };
 
   return (
@@ -209,17 +214,40 @@ function App() {
                     </div>
                   )}
                   {field.option === "sentence" && (
-                    <div className="flex gap05rem align_center">
-                      <label className="font12px">Max No. of Sentences:</label>
-                      <input
-                        type="number"
-                        className="inputOption"
-                        id=""
-                        onChange={(e) =>
-                          updateField(index, "no", parseInt(e.target.value))
-                        }
-                      />
-                    </div>
+                    <>
+                      <div className="flex gap05rem align_center">
+                        <label className="font12px">
+                          Max no. of Sentences:
+                        </label>
+                        <input
+                          type="number"
+                          className="inputOption"
+                          id=""
+                          onChange={(e) =>
+                            updateField(
+                              index,
+                              "no_of_sentences",
+                              parseInt(e.target.value)
+                            )
+                          }
+                        />
+                      </div>
+                      <div className="flex gap05rem align_center">
+                        <label className="font12px">Max. words:</label>
+                        <input
+                          type="number"
+                          className="inputOption"
+                          id=""
+                          onChange={(e) =>
+                            updateField(
+                              index,
+                              "max_words",
+                              parseInt(e.target.value)
+                            )
+                          }
+                        />
+                      </div>
+                    </>
                   )}
                 </div>
                 <button
@@ -252,9 +280,6 @@ function App() {
           </div>
         </div>
         <div class="flex gap1rem marginTop2rem">
-          <button onClick={() => setGenerate(true)} class="button">
-            Generate
-          </button>
           <button onClick={preview} class="button">
             Preview
           </button>

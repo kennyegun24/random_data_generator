@@ -31,7 +31,12 @@ const formRandomSentence = (nul) => {
   return `${randomArticle} ${randomNoun} ${randomVerb} ${randomPreposition} ${randomVerb} ${randomPreposition} ${randomArticle} ${randomNoun} ${randomConjuction} ${randomPronoun} ${randomVerb} ${randomVerb}..`;
 };
 
-export const generateRandomSentencesArray = (num, nul, null_percent) => {
+export const generateRandomSentencesArray = (
+  num,
+  nul,
+  null_percent,
+  max_words
+) => {
   if (nul && Math.random() < null_percent / 100) {
     return null;
   } else {
@@ -39,8 +44,11 @@ export const generateRandomSentencesArray = (num, nul, null_percent) => {
     const sentenceArray = new Array(sentenceCount)
       .fill(0)
       .map(() => formRandomSentence());
+    const sentence = sentenceArray.join(" ");
 
-    return sentenceArray.join(" ");
+    return sentence.length > max_words
+      ? sentence.slice(0, max_words)
+      : sentence;
   }
 };
 
