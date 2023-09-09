@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import JsonPreview from "./JsonPreview";
-import RubyPreview from "./RubyPreview";
+import JsonPreview from "./subComponents/JsonPreview";
+import RubyPreview from "./subComponents/RubyPreview";
 import {
   copyFunction,
-  // downloadExcel,
   downloadJson,
   downloadRuby,
   downloadSQL,
 } from "../helpers/functionalities";
-import SQLPreview from "./SQLPreview";
-import ExcelPreview from "./ExcelPreview";
+import SQLPreview from "./subComponents/SQLPreview";
+import ExcelPreview from "./subComponents/ExcelPreview";
 
 const Preview = ({ arr, setShow, generateType }) => {
   const [rubyAction, setRubyAction] = useState({

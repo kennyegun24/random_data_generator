@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ExcelTable from "./subComponents/ExcelTable";
-import ExcelRaw from "./subComponents/ExcelRaw";
+import ExcelTable from "./excelComponents/ExcelTable";
+import ExcelRaw from "./excelComponents/ExcelRaw";
 
 const ExcelPreview = ({ arr }) => {
   const [tab, setTab] = useState(1);
