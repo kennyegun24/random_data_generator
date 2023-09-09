@@ -287,6 +287,7 @@ function App() {
             </option>
             <option value="json">JSON</option>
             <option value="ruby">Ruby</option>
+            <option value="SQL">SQL</option>
           </select>
           <button onClick={preview} class="button">
             Preview

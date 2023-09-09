@@ -314,3 +314,16 @@ export const downloadRuby = (rubyData) => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 };
+
+export const downloadSQL = (sqlData) => {
+  const sqlContent = sqlData.textContent;
+  const sql = new Blob([sqlContent], { type: "application/sql" });
+  const url = URL.createObjectURL(sql);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "data.sql";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+};

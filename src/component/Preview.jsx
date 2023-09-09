@@ -5,7 +5,9 @@ import {
   copyFunction,
   downloadJson,
   downloadRuby,
+  downloadSQL,
 } from "../helpers/functionalities";
+import SQLPreview from "./SQLPreview";
 
 const Preview = ({ arr, setShow, generateType }) => {
   const [rubyAction, setRubyAction] = useState({
@@ -18,8 +20,10 @@ const Preview = ({ arr, setShow, generateType }) => {
         <div className="flex justify_between">
           {generateType === "json" ? (
             <JsonPreview arr={arr} />
-          ) : (
+          ) : generateType === "ruby" ? (
             <RubyPreview arr={arr} tableAction={rubyAction} />
+          ) : (
+            <SQLPreview arr={arr} tableAction={rubyAction} />
           )}
         </div>
         <div className="downloadCopyBtnDiv">
@@ -47,12 +51,61 @@ const Preview = ({ arr, setShow, generateType }) => {
               {" "}
               <button
                 className="button downloadBtn"
-                onClick={() => downloadRuby(document.querySelector(".ruby"))}
+                onClick={() =>
+                  rubyAction.action !== "" &&
+                  rubyAction.table !== "" &&
+                  downloadRuby(document.querySelector(".ruby"))
+                }
               >
                 Download
               </button>
               <button
                 onClick={() => copyFunction(document.querySelector(".ruby"))}
+                class="button"
+              >
+                copy
+              </button>
+              <input
+                type="text"
+                className="input"
+                placeholder="Table name..."
+                name="table"
+                onChange={(e) =>
+                  setRubyAction({
+                    ...rubyAction,
+                    [e.target.name]: e.target.value,
+                  })
+                }
+              />
+              <input
+                type="text"
+                className="input"
+                placeholder="Action..."
+                name="action"
+                onChange={(e) =>
+                  setRubyAction({
+                    ...rubyAction,
+                    [e.target.name]: e.target.value,
+                  })
+                }
+              />
+            </>
+          )}
+          {generateType === "SQL" && (
+            <>
+              {" "}
+              <button
+                className="button downloadBtn"
+                onClick={() =>
+                  rubyAction.action !== "" &&
+                  rubyAction.table !== "" &&
+                  downloadSQL(document.querySelector(".sql"))
+                }
+              >
+                Download
+              </button>
+              <button
+                onClick={() => copyFunction(document.querySelector(".sql"))}
                 class="button"
               >
                 copy
