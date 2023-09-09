@@ -1,6 +1,5 @@
 import React from "react";
 import "./json.css";
-import { copyFunction, downloadJson } from "../helpers/functionalities";
 
 const JsonPreview = ({ arr }) => {
   return (
