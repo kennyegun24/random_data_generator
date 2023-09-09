@@ -327,3 +327,24 @@ export const downloadSQL = (sqlData) => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 };
+
+// export const downloadExcel = (excelData) => {
+//   // Create a new workbook
+//   const workbook = XLSX.utils.book_new();
+//   // Convert your data into a worksheet
+//   const worksheet = XLSX.utils.json_to_sheet(excelData);
+//   // Add the worksheet to the workbook
+//   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+//   // Create a Blob from the workbook
+//   const blob = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+//   // Create a URL for the Blob
+//   const url = URL.createObjectURL(blob);
+//   // Create a link element to trigger the download
+//   const a = document.createElement("a");
+//   a.href = url;
+//   a.download = "data.xlsx";
+//   // Trigger a click event on the link to initiate the download
+//   a.click();
+//   // Clean up: remove the link and revoke the URL
+//   URL.revokeObjectURL(url);
+// };

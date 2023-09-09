@@ -1,5 +1,5 @@
 .preview_container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
@@ -11,12 +11,13 @@
   background-color: #424242;
   margin: 5vh 5%;
   height: 90vh;
+  position: relative;
 }
 
 pre {
   color: #fff;
-  min-height: 83vh;
-  max-height: 83vh;
+  /* min-height: 83vh; */
+  /* max-height: 83vh; */
   overflow-y: auto;
   width: 95%;
   padding: 1rem;
@@ -41,8 +42,8 @@ pre {
 .downloadCopyBtnDiv {
   /* position: fixed; */
   /* top: 0; */
-  left: 11%;
-  bottom: 6vh;
+  /* left: 11%; */
+  /* bottom: 6vh; */
   display: flex;
   gap: 0.5rem;
 }
@@ -50,4 +51,15 @@ pre {
 .downloadBtn:hover {
   background: #04d7cd;
   transition: 0.4s ease-in-out;
+}
+
+.previewHeader {
+  height: 7%;
+}
+.previewBody {
+  height: 85%;
+}
+
+.downloadCopyBtnDiv {
+  height: 7%;
 }

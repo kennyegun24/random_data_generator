@@ -141,6 +141,14 @@ pre {
   font-size: 12px;
 }
 
+.width100 {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .header {
   width: 80%;
   margin: auto;

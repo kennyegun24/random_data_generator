@@ -3,11 +3,13 @@ import JsonPreview from "./JsonPreview";
 import RubyPreview from "./RubyPreview";
 import {
   copyFunction,
+  // downloadExcel,
   downloadJson,
   downloadRuby,
   downloadSQL,
 } from "../helpers/functionalities";
 import SQLPreview from "./SQLPreview";
+import ExcelPreview from "./ExcelPreview";
 
 const Preview = ({ arr, setShow, generateType }) => {
   const [rubyAction, setRubyAction] = useState({
@@ -17,13 +19,18 @@ const Preview = ({ arr, setShow, generateType }) => {
   return (
     <div className="preview_container">
       <div className="json_container flex column justify_between">
-        <div className="flex justify_between">
+        <header className="previewHeader">
+          <h2 className="white text-center">Preview</h2>
+        </header>
+        <div className="flex justify_between previewBody">
           {generateType === "json" ? (
             <JsonPreview arr={arr} />
           ) : generateType === "ruby" ? (
             <RubyPreview arr={arr} tableAction={rubyAction} />
-          ) : (
+          ) : generateType === "SQL" ? (
             <SQLPreview arr={arr} tableAction={rubyAction} />
+          ) : (
+            <ExcelPreview arr={arr} />
           )}
         </div>
         <div className="downloadCopyBtnDiv">
