@@ -1,7 +1,6 @@
 import React from "react";
-import { copyFunction, downloadRuby } from "../helpers/functionalities";
 
-const RubyPreview = ({ arr }) => {
+const RubyPreview = ({ arr, tableAction }) => {
   return (
     <pre>
       <code className="ruby">
@@ -11,26 +10,14 @@ const RubyPreview = ({ arr }) => {
             .join(`, `);
           return (
             <div>
-              <p className="">User.create({form})</p>
+              <p className="">
+                {tableAction.table}.{tableAction.action}({form})
+              </p>
               {"\n"}
             </div>
           );
         })}
       </code>
-      <div className="downloadCopyBtnDiv">
-        <button
-          className="button downloadBtn"
-          onClick={() => downloadRuby(document.querySelector(".ruby"))}
-        >
-          Download
-        </button>
-        <button
-          onClick={() => copyFunction(document.querySelector(".ruby"))}
-          class="button"
-        >
-          copy
-        </button>
-      </div>
     </pre>
   );
 };

@@ -32,12 +32,13 @@ function App() {
       no_of_sentences: 1,
       null: false,
       null_percent: null,
-      min_words: 500,
+      max_words: 500,
     },
   ]);
   const [noOfRows, setnoOfRows] = useState(1);
   const [arr, setArr] = useState();
   const [show, setShow] = useState(false);
+  const [generate, setGenerate] = useState(null);
 
   const generateJson = () => {
     return new Array(noOfRows).fill(0).map((arr, index) => {
@@ -280,12 +281,19 @@ function App() {
           </div>
         </div>
         <div class="flex gap1rem marginTop2rem">
+          <select onChange={(e) => setGenerate(e.target.value)} class="button">
+            <option value="Generate" selected>
+              Generate
+            </option>
+            <option value="json">JSON</option>
+            <option value="ruby">Ruby</option>
+          </select>
           <button onClick={preview} class="button">
             Preview
           </button>
         </div>
       </div>
-      {show && <Preview arr={arr} setShow={setShow} />}
+      {show && <Preview arr={arr} generateType={generate} setShow={setShow} />}
     </div>
   );
 }

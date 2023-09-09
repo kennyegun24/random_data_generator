@@ -168,14 +168,6 @@ pre {
   color: #aca898;
   margin-top: 5vh;
   /* width: fit-content; */
-  .input {
-    border: #6c6c6c 1px solid;
-    outline: #6c6c6c;
-    background: #303030;
-    padding: 0.5rem;
-    color: #fff;
-    width: 15%;
-  }
   .inputLabel {
     font-size: 16px;
     text-align: left;
@@ -215,4 +207,13 @@ pre {
 
 .pointer {
   cursor: pointer;
+}
+
+.input {
+  border: #6c6c6c 1px solid;
+  outline: #6c6c6c;
+  background: #303030;
+  padding: 0.5rem;
+  color: #fff;
+  width: 15%;
 }

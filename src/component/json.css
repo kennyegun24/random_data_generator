@@ -18,10 +18,12 @@ pre {
   min-height: 83vh;
   max-height: 83vh;
   overflow-y: auto;
-  width: 49%;
+  width: 95%;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 
 .closeBtn {
@@ -37,7 +39,10 @@ pre {
 }
 
 .downloadCopyBtnDiv {
-  position: fixed;
+  /* position: fixed; */
+  /* top: 0; */
+  left: 11%;
+  bottom: 6vh;
   display: flex;
   gap: 0.5rem;
 }
