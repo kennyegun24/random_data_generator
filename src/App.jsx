@@ -39,6 +39,7 @@ function App() {
   const [arr, setArr] = useState();
   const [show, setShow] = useState(false);
   const [generate, setGenerate] = useState(null);
+  const [err, setErr] = useState(null);
 
   const generateJson = () => {
     return new Array(noOfRows).fill(0).map((arr, index) => {
@@ -122,10 +123,17 @@ function App() {
     setShow(true);
   };
 
+  const [dataAction, setDataAction] = useState({
+    table: "",
+    action: "",
+  });
+
   return (
     <div className="container">
       <div className="header flex column gap1rem">
-        <h3 className="headerText">JSON and RUBY (migrations) generators</h3>
+        <h3 className="headerText">
+          JSON, RUBY (migrations), CSV | EXCEL and SQL generators
+        </h3>
 
         <h3 className="headerText">
           Looking for where to generate mockup data for your backend or populate
@@ -280,7 +288,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div class="flex gap1rem marginTop2rem">
+        <div class="flex gap1rem marginTop2rem align_center">
           <select onChange={(e) => setGenerate(e.target.value)} class="button">
             <option value="Generate" selected>
               Generate
@@ -290,218 +298,61 @@ function App() {
             <option value="SQL">SQL</option>
             <option value="excel">Excel</option>
           </select>
-          <button onClick={preview} class="button">
+          <button
+            onClick={() =>
+              noOfRows > 1501
+                ? setErr("Number of rows should not be more than 1500")
+                : dataAction.action === "" || dataAction.table === ""
+                ? setErr("Table name and Action must be present...")
+                : preview()
+            }
+            class="button"
+          >
             Preview
           </button>
+          {(generate === "ruby" || generate === "SQL") && (
+            <>
+              <input
+                type="text"
+                className="input"
+                placeholder="Table name..."
+                name="table"
+                onChange={(e) =>
+                  setDataAction({
+                    ...dataAction,
+                    [e.target.name]: e.target.value,
+                  })
+                }
+              />
+              <input
+                type="text"
+                className="input"
+                placeholder="Action..."
+                name="action"
+                onChange={(e) =>
+                  setDataAction({
+                    ...dataAction,
+                    [e.target.name]: e.target.value,
+                  })
+                }
+              />
+            </>
+          )}
         </div>
+        {err &&
+          setTimeout(() => {
+            setErr(null);
+          }, 2000) && <p className="red font12px">{err}</p>}
       </div>
-      {show && <Preview arr={arr} generateType={generate} setShow={setShow} />}
+      {show && (
+        <Preview
+          arr={arr}
+          generateType={generate}
+          setShow={setShow}
+          dataAction={dataAction}
+        />
+      )}
     </div>
   );
 }
 export default App;
-
-// const removeDuplicateCountry = () => {
-//   return [...new Set(countries)];
-// };
-
-// const destructureStatesArray = () => {
-//   // array was initially like this: arr = [{ country: '', states: ['', ''] }, { country: '', states: ['', ''] }]
-//   const allStates = [];
-//   for (let i = 0; i <= states.length; i++) {
-//     allStates.push(states[i]?.states);
-//     // console.log(states[i]);
-//   }
-
-//   return allStates.flat(); // output => ['','','','','','',]
-// };
-
-// function generateNumbers() {
-//   const numbers = new Array(1).fill(0).map(() => formRandomNumbers());
-//   // console.log(numbers.join(""));
-//   return numbers.join(" ");
-// }
-
-// function generatePhoneNumbers() {
-//   const sentenceArray = new Array(1).fill(0).map(() => formRandomPhone());
-
-//   return sentenceArray.join(" ");
-// }
-
-// function generateNames() {
-//   const names = new Array(1).fill(0).map(() => formNames());
-
-//   return names.join(" ");
-// }
-
-// function generateLastName() {
-//   const names = new Array(1).fill(0).map(() => formLastName());
-
-//   return names.join(" ");
-// }
-
-// function generateGender() {
-//   const names = new Array(1).fill(0).map(() => formGender());
-
-//   return names.join(" ");
-// }
-
-// function generateYesNo() {
-//   const names = new Array(1).fill(0).map(() => formYesNo());
-
-//   return names.join(" ");
-// }
-
-// function generateBool() {
-//   const names = new Array(1).fill(0).map(() => formBool());
-
-//   return names.join(" ");
-// }
-
-// function generateStates() {
-//   const states = new Array(1).fill(0).map(() => formStates());
-
-//   return states.join(" ");
-// }
-
-// function generateCountries() {
-//   const country = new Array(1).fill(0).map(() => formCountry());
-
-//   return country.join(" ");
-// }
-
-// function generateCarModel() {
-//   const carModel = new Array(1).fill(0).map(() => formCarModel());
-
-//   return carModel.join(" ");
-// }
-
-// function generateCarCompany() {
-//   const carCompany = new Array(1).fill(0).map(() => formCarCompany());
-
-//   return carCompany.join(" ");
-// }
-
-// function generateColors() {
-//   const colors = new Array(1).fill(0).map(() => formColors());
-
-//   return colors.join(" ");
-// }
-
-// <div className="flex justify_between gap1rem">
-//   <div className="flex column gap1rem height100vh width50">
-//     {fields.map((field, index) => (
-//       <div key={index} className="flex align_center gap05rem">
-//         <input
-//           className="padding05rem"
-//           type="text"
-//           onChange={(e) => updateField(index, "name", e.target.value)}
-//           value={field.name}
-//         />
-//         <select
-//           className="profilePostsButton"
-//           onChange={(e) => updateField(index, "option", e.target.value)}
-//           value={field.option}
-//         >
-//           <option value="option">OPTIONS</option>
-//           <option value="id">ID</option>
-//           <option value="user_name">username</option>
-//           <option value="name">first name</option>
-//           <option value="last-name">last name</option>
-//           <option value="city">city</option>
-//           <option value="state">state</option>
-//           <option value="country">country</option>
-//           <option value="phone">mobile number</option>
-//           <option value="randDigits">random digits</option>
-//           <option value="sentence">sentences</option>
-//           <option value="word">word</option>
-//           <option value="colors">colors</option>
-//           <option value="age">age</option>
-//           <option value="password">password</option>
-//           <option value="state">state</option>
-//           <option value="country">country</option>
-//           <option value="car-model">car model</option>
-//           <option value="car-company">car company</option>
-//           <option value="sex">sex</option>
-//           <option value="yes-no">yes/no</option>
-//           <option value="bool">bool</option>
-//           <option value="ip">IP address</option>
-//           <option value="dob">Date of birth</option>
-//           <option value="url">Links</option>
-//         </select>
-//         <div className="flex align_center gap05rem">
-//           <input
-//             type="checkbox"
-//             id=""
-//             name="bool"
-//             max={5}
-//             onChange={(e) => updateField(index, "null", e.target.checked)}
-//           />
-//           <span className="font10px">null?</span>
-//         </div>
-//         {field.option === "sentence" && (
-//           <div className="flex align_center gap05rem">
-//             <input
-//               type="number"
-//               id=""
-//               style={{ width: "30px" }}
-//               max={5}
-//               onChange={(e) =>
-//                 updateField(index, "no", parseInt(e.target.value))
-//               }
-//             />
-//             <span className="font10px">how many sentences</span>
-//           </div>
-//         )}
-//         {field.null && (
-//           <div className="flex align_center gap05rem">
-//             <input
-//               type="number"
-//               id=""
-//               style={{ width: "30px" }}
-//               max={5}
-//               onChange={(e) =>
-//                 updateField(
-//                   index,
-//                   "null_percent",
-//                   parseInt(e.target.value)
-//                 )
-//               }
-//             />
-//             <span className="font10px">how many sentences</span>
-//           </div>
-//         )}
-//         <button
-//           style={{
-//             color: "#111",
-//             cursor: "pointer",
-//             fontWeight: "700",
-//             fontSize: "24px",
-//             border: "none",
-//             background: "transparent",
-//           }}
-//           onClick={() => removeField(index)}
-//         >
-//           X
-//         </button>
-//       </div>
-//     ))}
-//     <button onClick={addField} id="button" className="profilePostsButton">
-//       ADD FIELD
-//     </button>
-//     <button onClick={json} className="profilePostsButton">
-//       Generate
-//     </button>
-//   </div>
-//   <div className="width50" hidden>
-//     <div className="flex gap05rem">
-//       <button onClick={() => downloadJson(arr)}>Download JSON</button>
-//       <button onClick={copyFunction}>Copy</button>
-//     </div>
-//     <pre>
-//       <code className="prettyprint">
-//         {JSON.stringify(arr, null, 2)?.replace(/"([^"]+)":/g, "$1:")}
-//       </code>
-//     </pre>
-//   </div>
-// </div>;

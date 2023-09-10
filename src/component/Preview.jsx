@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import JsonPreview from "./subComponents/JsonPreview";
 import RubyPreview from "./subComponents/RubyPreview";
 import {
@@ -10,11 +10,7 @@ import {
 import SQLPreview from "./subComponents/SQLPreview";
 import ExcelPreview from "./subComponents/ExcelPreview";
 
-const Preview = ({ arr, setShow, generateType }) => {
-  const [rubyAction, setRubyAction] = useState({
-    table: "",
-    action: "",
-  });
+const Preview = ({ arr, setShow, generateType, dataAction }) => {
   return (
     <div className="preview_container">
       <div className="json_container flex column justify_between">
@@ -25,9 +21,9 @@ const Preview = ({ arr, setShow, generateType }) => {
           {generateType === "json" ? (
             <JsonPreview arr={arr} />
           ) : generateType === "ruby" ? (
-            <RubyPreview arr={arr} tableAction={rubyAction} />
+            <RubyPreview arr={arr} tableAction={dataAction} />
           ) : generateType === "SQL" ? (
-            <SQLPreview arr={arr} tableAction={rubyAction} />
+            <SQLPreview arr={arr} tableAction={dataAction} />
           ) : (
             <ExcelPreview arr={arr} />
           )}
@@ -57,11 +53,7 @@ const Preview = ({ arr, setShow, generateType }) => {
               {" "}
               <button
                 className="button downloadBtn"
-                onClick={() =>
-                  rubyAction.action !== "" &&
-                  rubyAction.table !== "" &&
-                  downloadRuby(document.querySelector(".ruby"))
-                }
+                onClick={() => downloadRuby(document.querySelector(".ruby"))}
               >
                 Download
               </button>
@@ -71,30 +63,6 @@ const Preview = ({ arr, setShow, generateType }) => {
               >
                 copy
               </button>
-              <input
-                type="text"
-                className="input"
-                placeholder="Table name..."
-                name="table"
-                onChange={(e) =>
-                  setRubyAction({
-                    ...rubyAction,
-                    [e.target.name]: e.target.value,
-                  })
-                }
-              />
-              <input
-                type="text"
-                className="input"
-                placeholder="Action..."
-                name="action"
-                onChange={(e) =>
-                  setRubyAction({
-                    ...rubyAction,
-                    [e.target.name]: e.target.value,
-                  })
-                }
-              />
             </>
           )}
           {generateType === "SQL" && (
@@ -102,11 +70,7 @@ const Preview = ({ arr, setShow, generateType }) => {
               {" "}
               <button
                 className="button downloadBtn"
-                onClick={() =>
-                  rubyAction.action !== "" &&
-                  rubyAction.table !== "" &&
-                  downloadSQL(document.querySelector(".sql"))
-                }
+                onClick={() => downloadSQL(document.querySelector(".sql"))}
               >
                 Download
               </button>
@@ -116,30 +80,6 @@ const Preview = ({ arr, setShow, generateType }) => {
               >
                 copy
               </button>
-              <input
-                type="text"
-                className="input"
-                placeholder="Table name..."
-                name="table"
-                onChange={(e) =>
-                  setRubyAction({
-                    ...rubyAction,
-                    [e.target.name]: e.target.value,
-                  })
-                }
-              />
-              <input
-                type="text"
-                className="input"
-                placeholder="Action..."
-                name="action"
-                onChange={(e) =>
-                  setRubyAction({
-                    ...rubyAction,
-                    [e.target.name]: e.target.value,
-                  })
-                }
-              />
             </>
           )}
         </div>

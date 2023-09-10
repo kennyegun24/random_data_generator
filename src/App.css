@@ -1,93 +1,3 @@
-/* * {
-  margin: 0;
-  box-sizing: border-box;
-  padding: 0;
-}
-
-.container {
-  background-color: #303030;
-  height: 100%;
-  font-family: sans-serif;
-  color: #828080;
-}
-
-input {
-  background-color: #303030;
-  border-color: #cac8c8;
-  outline: #cac8c8;
-  color: #fff;
-}
-
-.flex {
-  display: flex;
-}
-
-.align_center {
-  align-items: center;
-}
-
-.justify_Center {
-  justify-content: center;
-}
-
-.justify_between {
-  justify-content: space-between;
-}
-
-.column {
-  flex-direction: column;
-}
-
-.gap1rem {
-  gap: 1rem;
-}
-
-.gap05rem {
-  gap: 0.5rem;
-}
-
-.gap2rem {
-  gap: 2rem;
-}
-
-.font10px {
-  font-size: 10px;
-}
-
-.padding05rem {
-  padding: 0.5rem;
-}
-
-.padding1rem {
-  padding: 1rem;
-}
-
-.width50 {
-  width: 50%;
-}
-
-.height100vh {
-  min-height: 89vh;
-  max-height: 89vh;
-  overflow-y: auto;
-}
-
-pre {
-  color: #fff;
-  min-height: 85vh;
-  max-height: 85vh;
-  overflow-y: auto;
-}
-
-.profilePostsButton {
-  background: #151a23;
-  color: #fff;
-  padding: 0.5rem;
-  width: 100px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-} */
 * {
   padding: 0;
   margin: 0;
@@ -224,4 +134,13 @@ pre {
   padding: 0.5rem;
   color: #fff;
   width: 15%;
+}
+
+.red {
+  color: #111;
+  font-weight: 800;
+}
+
+.auto_margin {
+  margin: auto 0;
 }

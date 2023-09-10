@@ -15,10 +15,20 @@ const ExcelPreview = ({ arr }) => {
           height: "6%",
         }}
       >
-        <button className="button" onClick={() => setTab(1)} type="button">
+        <button
+          style={{ borderColor: tab === 1 ? "#04d7cd" : "" }}
+          className="button"
+          onClick={() => setTab(1)}
+          type="button"
+        >
           Table
         </button>
-        <button className="button" onClick={() => setTab(2)} type="button">
+        <button
+          style={{ borderColor: tab === 2 ? "#04d7cd" : "" }}
+          className="button"
+          onClick={() => setTab(2)}
+          type="button"
+        >
           Raw
         </button>
       </header>
