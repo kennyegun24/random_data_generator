@@ -18,6 +18,7 @@ import { car_company } from "../data/car_company";
 import { colors } from "../data/colors";
 import { user_names } from "../data/user_names";
 import { career } from "../data/careers";
+import { cities } from "../data/cities";
 
 const formRandomSentence = (nul) => {
   const randomPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
@@ -283,7 +284,7 @@ export const generateUrls = (nul, null_percent) => {
 };
 
 export const generateCareers = (nul, null_percent) => {
-  if (nul && Math.random() < null_percent / 1000) {
+  if (nul && Math.random() < null_percent / 100) {
     return null;
   } else {
     const careers = career[Math.floor(Math.random() * career.length)];
@@ -298,6 +299,15 @@ export const generateDecimals = (nul, null_percent, max_num) => {
   } else {
     const decimals = Math.random() * max;
     return decimals.toFixed(4);
+  }
+};
+
+export const generateCities = (nul, null_percent) => {
+  if (nul && Math.floor(Math.random() < null_percent / 100)) {
+    return false;
+  } else {
+    const city = cities[Math.floor(Math.random() * career.length)];
+    return city;
   }
 };
 
@@ -347,3 +357,25 @@ export const downloadSQL = (sqlData) => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 };
+
+// Fisher-Yates algorithm
+// const getRandomCities = (allCities, numberOfCitiesToSelect) => {
+//   if (numberOfCitiesToSelect >= allCities.length) {
+//     // Handle the case where you want to select more cities than available
+//     return allCities;
+//   }
+
+// Fisher-Yates algorithm
+//   const shuffledCities = allCities.slice(); // Create a copy of the original array
+//   for (let i = shuffledCities.length - 1; i > 0; i--) {
+//     // Shuffle the array using the Fisher-Yates algorithm
+//     const j = Math.floor(Math.random() * (i + 1));
+//     [shuffledCities[i], shuffledCities[j]] = [
+//       shuffledCities[j],
+//       shuffledCities[i],
+//     ];
+//   }
+
+//   return shuffledCities.slice(0, numberOfCitiesToSelect);
+// };
+// console.log(getRandomCities(cities, 3500));

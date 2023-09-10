@@ -16,6 +16,7 @@ import {
   formStates,
   formYesNo,
   generateCareers,
+  generateCities,
   generateDecimals,
   generateIpAddress,
   generatePassword,
@@ -93,6 +94,8 @@ function App() {
             ? formYesNo(each.null, each.null_percent)
             : each.option === "state"
             ? formStates(each.null, each.null_percent)
+            : each.option === "city"
+            ? generateCities(each.null, each.null_percent)
             : each.option === "country"
             ? formCountry(each.null, each.null_percent)
             : each.option === "car-model"
