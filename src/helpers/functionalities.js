@@ -17,6 +17,7 @@ import { car_model } from "../data/car_model";
 import { car_company } from "../data/car_company";
 import { colors } from "../data/colors";
 import { user_names } from "../data/user_names";
+import { career } from "../data/careers";
 
 const formRandomSentence = (nul) => {
   const randomPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
@@ -281,6 +282,25 @@ export const generateUrls = (nul, null_percent) => {
   }
 };
 
+export const generateCareers = (nul, null_percent) => {
+  if (nul && Math.random() < null_percent / 1000) {
+    return null;
+  } else {
+    const careers = career[Math.floor(Math.random() * career.length)];
+    return careers;
+  }
+};
+
+export const generateDecimals = (nul, null_percent, max_num) => {
+  let max = max_num || 100;
+  if (nul && Math.random() < null_percent / 100) {
+    return null;
+  } else {
+    const decimals = Math.random() * max;
+    return decimals.toFixed(4);
+  }
+};
+
 export const downloadJson = (arr) => {
   const json = JSON.stringify(arr, null, 2).replace(/"([^"]+)":/g, "$1:");
   const blob = new Blob([json], { type: "application/json" });
@@ -327,24 +347,3 @@ export const downloadSQL = (sqlData) => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 };
-
-// export const downloadExcel = (excelData) => {
-//   // Create a new workbook
-//   const workbook = XLSX.utils.book_new();
-//   // Convert your data into a worksheet
-//   const worksheet = XLSX.utils.json_to_sheet(excelData);
-//   // Add the worksheet to the workbook
-//   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-//   // Create a Blob from the workbook
-//   const blob = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
-//   // Create a URL for the Blob
-//   const url = URL.createObjectURL(blob);
-//   // Create a link element to trigger the download
-//   const a = document.createElement("a");
-//   a.href = url;
-//   a.download = "data.xlsx";
-//   // Trigger a click event on the link to initiate the download
-//   a.click();
-//   // Clean up: remove the link and revoke the URL
-//   URL.revokeObjectURL(url);
-// };

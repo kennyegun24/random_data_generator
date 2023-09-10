@@ -15,6 +15,8 @@ import {
   formRandomPhone,
   formStates,
   formYesNo,
+  generateCareers,
+  generateDecimals,
   generateIpAddress,
   generatePassword,
   generateRandomDob,
@@ -50,6 +52,14 @@ function App() {
             ? generateUserName(each.null, each.null_percent)
             : each.option === "ip"
             ? generateIpAddress(each.null, each.null_percent)
+            : each.option === "decimal"
+            ? generateDecimals(
+                each.null,
+                each.null_percent,
+                parseInt(each.max_words)
+              )
+            : each.option === "career"
+            ? generateCareers(each.null, each.null_percent)
             : each.option === "age"
             ? formAge(each.null, each.null_percent)
             : each.option === "url"
@@ -190,6 +200,8 @@ function App() {
                   <option value="ip">IP address</option>
                   <option value="dob">Date of birth</option>
                   <option value="url">Links</option>
+                  <option value="career">Careers</option>
+                  <option value="decimal">Decimals</option>
                 </select>
                 <div className="flex gap05rem">
                   <div className="flex gap05rem align_center">
@@ -258,6 +270,25 @@ function App() {
                       </div>
                     </>
                   )}
+                  {field.option === "decimal" && (
+                    <>
+                      <div className="flex gap05rem align_center">
+                        <label className="font12px">Max. num:</label>
+                        <input
+                          type="number"
+                          className="inputOption"
+                          id=""
+                          onChange={(e) =>
+                            updateField(
+                              index,
+                              "max_words",
+                              parseInt(e.target.value)
+                            )
+                          }
+                        />
+                      </div>
+                    </>
+                  )}
                 </div>
                 <button
                   onClick={() => removeField(index)}
@@ -302,7 +333,8 @@ function App() {
             onClick={() =>
               noOfRows > 1501
                 ? setErr("Number of rows should not be more than 1500")
-                : dataAction.action === "" || dataAction.table === ""
+                : (generate === "SQL" || generate === "ruby") &&
+                  (dataAction.action === "" || dataAction.table === "")
                 ? setErr("Table name and Action must be present...")
                 : preview()
             }
