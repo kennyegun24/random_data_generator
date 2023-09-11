@@ -358,6 +358,18 @@ export const downloadSQL = (sqlData) => {
   URL.revokeObjectURL(url);
 };
 
+// laravel format
+// class UserTableSeeder extends Seeder {
+
+//     public function run()
+//     {
+//         DB::table('users')->delete();
+
+//         User::create(array('email' => 'foo@bar.com'));
+//     }
+
+// }
+
 // Fisher-Yates algorithm
 // const getRandomCities = (allCities, numberOfCitiesToSelect) => {
 //   if (numberOfCitiesToSelect >= allCities.length) {
