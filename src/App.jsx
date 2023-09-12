@@ -337,6 +337,8 @@ function App() {
                 : (generate === "SQL" || generate === "ruby") &&
                   (dataAction.action === "" || dataAction.table === "")
                 ? setErr("Table name and Action must be present...")
+                : generate === "Generate" || generate === null
+                ? setErr("You must select a format to be generated")
                 : preview()
             }
             class="button"
