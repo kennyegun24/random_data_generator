@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+## DATA GENERATOR FOR (JSON, Ruby on Rails migrations, SQL queries and EXCEL tables)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### What is this tool for?
+This is a random data generator for developers or anyone that needs random mock data for migrating to a database or for any other use. This generator has several options to be chosen from such as `name, email, password, random dates, e.t.c`. Users are allowed to preview the random data before exporting to any format of their choice such as `JSON, RUBY, SQL and EXCEL (more formats will be added in the future)`.
 
-## Available Scripts
+### How to use?
 
-In the project directory, you can run:
+1. Get familiar with the fields and options.
+ <img src='https://github.com/kennyegun24/random_data_generator/assets/109461921/eaa3ddf5-664c-45c0-9888-63a0eb769dc4' />
 
-### `npm start`
+ - The input fields under the `Fields placeholder` is meant to represent the name of the data...
+ - The select tag/ option under the `type placeholder` is used to select the type of data that should be generated for that particular field e.g `phoneNumber, email, ip address`
+ - There is a general option you can choose for all types which is `null` and a unique options `max number of sentences and max words` for Sentences while `max-num` for Decimals
+ - The add field button is used to create new fields to add more data.
+ - The number of rows is used to limit the number of objects `JSON` and rows for other generate types. The maximum number of rows allowed is 1500.
+ - The generate select tag is used to select a particular type of data to be generated.
+ - The preview button is used to display the data generated...
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+ 
+ ### New.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ![image](https://github.com/kennyegun24/random_data_generator/assets/109461921/b98d7c1a-a03e-432a-b8c3-ef6437fbe7e2)
