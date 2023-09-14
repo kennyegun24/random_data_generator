@@ -14,10 +14,10 @@ This project was created due to the little to no generator out there on the web 
 - Export in JSON format
 
 <p float="left">
- <img src="https://github.com/kennyegun24/random_data_generator/assets/109461921/b98d7c1a-a03e-432a-b8c3-ef6437fbe7e2" width='500' /> 
- <img src='https://github.com/kennyegun24/random_data_generator/assets/109461921/eaa3ddf5-664c-45c0-9888-63a0eb769dc4' width='500'/>
- <img src='https://github.com/kennyegun24/random_data_generator/assets/109461921/eb33ea2c-b5e5-4006-9859-df602e880221' width='500'/>
- <img src='https://github.com/kennyegun24/random_data_generator/assets/109461921/3699be3f-fe07-43ac-8fbb-49d767b3b429' width='500'/>
+ <img src="https://github.com/kennyegun24/random_data_generator/assets/109461921/b98d7c1a-a03e-432a-b8c3-ef6437fbe7e2" width='400' /> 
+ <img src='https://github.com/kennyegun24/random_data_generator/assets/109461921/eaa3ddf5-664c-45c0-9888-63a0eb769dc4' width='400'/>
+ <img src='https://github.com/kennyegun24/random_data_generator/assets/109461921/eb33ea2c-b5e5-4006-9859-df602e880221' width='400'/>
+ <img src='https://github.com/kennyegun24/random_data_generator/assets/109461921/3699be3f-fe07-43ac-8fbb-49d767b3b429' width='400'/>
  <img src='https://github.com/kennyegun24/random_data_generator/assets/109461921/4fa539ed-17d0-4b4d-bbbd-9164cd5bb7a2' width='500'/>
 </p>
  
