@@ -18,6 +18,7 @@ import {
   generateCareers,
   generateCities,
   generateDecimals,
+  generateEmails,
   generateIpAddress,
   generatePassword,
   generateRandomDob,
@@ -47,65 +48,70 @@ function App() {
   const generateJson = () => {
     return new Array(noOfRows).fill(0).map((arr, index) => {
       // const joined = [defaultValues, ...fields];
-      const fieldObjects = fields.map((each) => ({
-        [each.name]:
-          each.option === "user_name"
-            ? generateUserName(each.null, each.null_percent)
-            : each.option === "ip"
-            ? generateIpAddress(each.null, each.null_percent)
-            : each.option === "decimal"
-            ? generateDecimals(
-                each.null,
-                each.null_percent,
-                parseInt(each.max_words)
-              )
-            : each.option === "career"
-            ? generateCareers(each.null, each.null_percent)
-            : each.option === "age"
-            ? formAge(each.null, each.null_percent)
-            : each.option === "url"
-            ? generateUrls(each.null, each.null_percent)
-            : each.option === "dob"
-            ? generateRandomDob(each.null, each.null_percent)
-            : each.option === "id"
-            ? index + 1
-            : each.option === "sentence"
-            ? generateRandomSentencesArray(
-                each.no_of_sentences,
-                each.null,
-                each.null_percent,
-                each.max_words
-              )
-            : each.option === "phone"
-            ? formRandomPhone(each.null, each.null_percent)
-            : each.option === "randDigits"
-            ? parseInt(formRandomNumbers(each.null, each.null_percent))
-            : each.option === "name"
-            ? formNames(each.null, each.null_percent)
-            : each.option === "password"
-            ? generatePassword()
-            : each.option === "last-name"
-            ? formLastName(each.null, each.null_percent)
-            : each.option === "sex"
-            ? formGender(each.null, each.null_percent)
-            : each.option === "bool"
-            ? JSON.parse(formBool(each.null, each.null_percent))
-            : each.option === "yes-no"
-            ? formYesNo(each.null, each.null_percent)
-            : each.option === "state"
-            ? formStates(each.null, each.null_percent)
-            : each.option === "city"
-            ? generateCities(each.null, each.null_percent)
-            : each.option === "country"
-            ? formCountry(each.null, each.null_percent)
-            : each.option === "car-model"
-            ? formCarModel(each.null, each.null_percent)
-            : each.option === "car-company"
-            ? formCarCompany(each.null, each.null_percent)
-            : each.option === "colors"
-            ? formColors(each.null, each.null_percent)
-            : null,
-      }));
+      const fieldObjects = fields.map((each) => {
+        const names = formNames();
+        return {
+          [each.name]:
+            each.option === "user_name"
+              ? generateUserName(each.null, each.null_percent)
+              : each.option === "ip"
+              ? generateIpAddress(each.null, each.null_percent)
+              : each.option === "email"
+              ? generateEmails(each.null, each.null_percent, names)
+              : each.option === "name"
+              ? formNames(each.null, each.null_percent)
+              : each.option === "decimal"
+              ? generateDecimals(
+                  each.null,
+                  each.null_percent,
+                  parseInt(each.max_words)
+                )
+              : each.option === "career"
+              ? generateCareers(each.null, each.null_percent)
+              : each.option === "age"
+              ? formAge(each.null, each.null_percent)
+              : each.option === "url"
+              ? generateUrls(each.null, each.null_percent)
+              : each.option === "dob"
+              ? generateRandomDob(each.null, each.null_percent)
+              : each.option === "id"
+              ? index + 1
+              : each.option === "sentence"
+              ? generateRandomSentencesArray(
+                  each.no_of_sentences,
+                  each.null,
+                  each.null_percent,
+                  each.max_words
+                )
+              : each.option === "phone"
+              ? formRandomPhone(each.null, each.null_percent)
+              : each.option === "randDigits"
+              ? parseInt(formRandomNumbers(each.null, each.null_percent))
+              : each.option === "password"
+              ? generatePassword()
+              : each.option === "last-name"
+              ? formLastName(each.null, each.null_percent)
+              : each.option === "sex"
+              ? formGender(each.null, each.null_percent)
+              : each.option === "bool"
+              ? JSON.parse(formBool(each.null, each.null_percent))
+              : each.option === "yes-no"
+              ? formYesNo(each.null, each.null_percent)
+              : each.option === "state"
+              ? formStates(each.null, each.null_percent)
+              : each.option === "city"
+              ? generateCities(each.null, each.null_percent)
+              : each.option === "country"
+              ? formCountry(each.null, each.null_percent)
+              : each.option === "car-model"
+              ? formCarModel(each.null, each.null_percent)
+              : each.option === "car-company"
+              ? formCarCompany(each.null, each.null_percent)
+              : each.option === "colors"
+              ? formColors(each.null, each.null_percent)
+              : null,
+        };
+      });
       // fieldObjects will produce multiple objects in an array, depending on how many objects are present in fields state.
       return Object.assign({}, ...fieldObjects);
       //The {} is the target object, and ...fieldObjects spreads the elements of the fieldObjects array into the Object.assign() function, merging all the objects into a single object.
@@ -181,6 +187,7 @@ function App() {
                   <option value="option">OPTIONS</option>
                   <option value="id">ID</option>
                   <option value="name">first name</option>
+                  <option value="email">Email</option>
                   <option value="last-name">last name</option>
                   <option value="password">password</option>
                   <option value="user_name">username</option>

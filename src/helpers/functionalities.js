@@ -86,6 +86,32 @@ export const formNames = (nul, null_percent) => {
   }
 };
 
+export const generateEmails = (nul, null_percent, name) => {
+  if (nul && Math.floor(Math.random() < null_percent / 100)) {
+    return false;
+  } else {
+    const email_name = name;
+    const domains = [
+      "gmail.com",
+      "mail.com",
+      "yahoo.com",
+      "email.com",
+      "outlook.com",
+      "welcome.xyz",
+      "bing.com",
+      "yahoo.co.uk",
+    ];
+    const email = name.charAt(Math.floor(Math.random() * name.length));
+    return (
+      email_name +
+      Math.floor(Math.random() * 99999) +
+      email +
+      "@" +
+      domains[Math.floor(Math.random() * domains.length)]
+    );
+  }
+};
+
 export const formLastName = (nul, null_percent) => {
   if (nul && Math.random() < null_percent / 100) {
     return null;
